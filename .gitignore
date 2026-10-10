@@ -1,0 +1,4 @@
+# gerado pelos scripts
+ios/build-xcframework/
+ios/LibDiveComputer.xcframework/
+android/build/
