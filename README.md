@@ -7,8 +7,10 @@ The [ScubaBook](https://www.scubabook.app) app reads dive computers over Bluetoo
 ScubaBook uses the library **without modifications**, as a separate dynamic framework (iPhone) and shared
 library (Android). ScubaBook itself is not open source; its binary only calls the public `dc_*` API.
 
-This repository is part of what the LGPL 2.1 (section 6) asks for: the exact source of the library as shipped, the
-scripts that build it, and the instructions to rebuild it, replace it inside the app and sign the result yourself.
+The library ships as a **separate dynamic component** that the app loads at runtime, so it can be replaced by a
+modified, interface-compatible version (LGPL 2.1, section 6(b)); in addition, the written offer below applies
+(section 6(c)). This repository holds the exact source of the library as shipped, the scripts that build it, and the
+instructions to rebuild it, replace it inside the app and sign the result yourself.
 
 ## What is here
 
@@ -69,14 +71,16 @@ private key or distribution certificate is ever provided.
 
 1. Check out the tag for your build, edit `libdivecomputer/`, run `ANDROID_NDK=<path> android/build.sh` →
    `android/build/<abi>/libdivecomputer.so`.
-2. Get the app package (`ScubaBook-android-v<versionCode>.aab`) from the written offer, or use a universal APK
-   generated from it: `bundletool build-apks --mode=universal --bundle ScubaBook-android-v<n>.aab --output app.apks`
-   then unzip `universal.apk`.
+2. Get the app package from the written offer: the universal APK (`ScubaBook-android-v<versionCode>-universal.apk`,
+   signed with a throwaway debug key) or the `.aab`, from which `bundletool build-apks --mode=universal --bundle
+   ScubaBook-android-v<n>.aab --output app.apks` produces `universal.apk`.
 3. Replace `lib/<abi>/libdivecomputer.so` inside the APK (e.g. with `apktool d` / `apktool b`, or by editing the
    zip and re-aligning with `zipalign`).
 4. Sign with your own key: `apksigner sign --ks <your.keystore> app.apk` (any modification after the original
    signature invalidates it; your signature replaces it).
-5. Install with `adb install app.apk` (uninstall the store copy first: a different signing key cannot update it).
+5. Install with `adb install app.apk`. A different signing key cannot update the store copy: uninstall it first
+   (local data such as unsynced drafts is lost; dives already saved are on your account) or use another user
+   profile on the device.
 
 Changes to the library itself belong upstream: https://github.com/libdivecomputer/libdivecomputer
 
@@ -89,8 +93,10 @@ O app [ScubaBook](https://www.scubabook.app) lê computadores de mergulho por Bl
 ScubaBook usa a biblioteca **sem modificação**, como framework dinâmico (iPhone) e biblioteca compartilhada
 (Android), separados do app. O ScubaBook em si não é código aberto; o binário só chama a API pública `dc_*`.
 
-Este repositório é parte do que a LGPL 2.1 (seção 6) pede: a fonte exata da biblioteca tal como embarcada, os
-scripts que a compilam e as instruções para recompilar, trocar dentro do app e assinar o resultado você mesmo.
+A biblioteca vai como **componente dinâmico separado**, carregado pelo app em tempo de execução, e por isso pode ser
+substituída por uma versão modificada e compatível (LGPL 2.1, § 6(b)); além disso, vale a oferta escrita abaixo
+(§ 6(c)). Este repositório guarda a fonte exata da biblioteca tal como embarcada, os scripts que a compilam e as
+instruções para recompilar, trocar dentro do app e assinar o resultado você mesmo.
 
 - `libdivecomputer/` — a fonte, sem modificação, da tag v0.9.0 (ver `ORIGEM.md`).
 - `ios/build-libdivecomputer.sh` — gera o `LibDiveComputer.xcframework` (precisa do Xcode).
