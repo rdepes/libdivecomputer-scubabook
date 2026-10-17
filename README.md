@@ -76,8 +76,10 @@ private key or distribution certificate is ever provided.
 2. Get the app package from the written offer: the universal APK (`ScubaBook-android-v<versionCode>-universal.apk`,
    **unsigned**: you sign it in step 4) or the `.aab`, from which `bundletool build-apks --mode=universal --bundle
    ScubaBook-android-v<n>.aab --output app.apks` produces `universal.apk`.
-3. Replace `lib/<abi>/libdivecomputer.so` inside the APK (e.g. with `apktool d` / `apktool b`, or by editing the
-   zip and re-aligning with `zipalign`).
+3. Replace `lib/<abi>/libdivecomputer.so` inside the APK: `zip -d app.apk lib/<abi>/libdivecomputer.so` then
+   `zip -0 -u app.apk lib/<abi>/libdivecomputer.so` — **`-0` (stored, no compression) is required**, the app uses
+   `extractNativeLibs=false` and the installer rejects a compressed library; then `zipalign -p -f 4 app.apk aligned.apk`
+   (16 KB pages) **before** signing.
 4. Sign with your own key: `apksigner sign --ks <your.keystore> app.apk` (any modification after the original
    signature invalidates it; your signature replaces it).
 5. Install with `adb install app.apk`. A different signing key cannot update the store copy: uninstall it first
