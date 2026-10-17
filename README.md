@@ -24,7 +24,8 @@ instructions to rebuild it, replace it inside the app and sign the result yourse
   loads at runtime (`@rpath/LibDiveComputer.framework/LibDiveComputer`, min iOS 16.4, arm64 device + arm64/x86_64
   simulator). Needs Xcode.
 - `android/` — the CMake project (`CMakeLists.txt`, `build.sh`) that builds `libdivecomputer.so` for
-  arm64-v8a, armeabi-v7a, x86_64 and x86 (android-24, 16 KB page sizes). Needs the Android NDK.
+  arm64-v8a, armeabi-v7a, x86_64 and x86 (android-24, 16 KB page sizes). Needs the Android NDK and `cmake`
+  (the one in `<sdk>/cmake/<version>/bin` is picked up automatically; or `brew install cmake`).
 
 ## Which tag matches your app version
 
