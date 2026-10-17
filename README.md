@@ -72,7 +72,7 @@ private key or distribution certificate is ever provided.
 1. Check out the tag for your build, edit `libdivecomputer/`, run `ANDROID_NDK=<path> android/build.sh` →
    `android/build/<abi>/libdivecomputer.so`.
 2. Get the app package from the written offer: the universal APK (`ScubaBook-android-v<versionCode>-universal.apk`,
-   signed with a throwaway debug key) or the `.aab`, from which `bundletool build-apks --mode=universal --bundle
+   **unsigned**: you sign it in step 4) or the `.aab`, from which `bundletool build-apks --mode=universal --bundle
    ScubaBook-android-v<n>.aab --output app.apks` produces `universal.apk`.
 3. Replace `lib/<abi>/libdivecomputer.so` inside the APK (e.g. with `apktool d` / `apktool b`, or by editing the
    zip and re-aligning with `zipalign`).
