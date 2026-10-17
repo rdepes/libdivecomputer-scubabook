@@ -20,6 +20,9 @@ target_compile_options(divecomputer PRIVATE -O2 -w -fvisibility=default)
 target_link_libraries(divecomputer log)
 
 # ---- libsbdivecomputer.so: o JNI do ScubaBook, que só usa a API pública dc_* ----
-add_library(sbdivecomputer SHARED src/main/cpp/sb_dive_computer.c)
-target_compile_options(sbdivecomputer PRIVATE -O2 -Wall)
-target_link_libraries(sbdivecomputer divecomputer log)
+# no repositório público de re-link só existe a biblioteca: o JNI fica de fora quando a fonte não está aqui
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/sb_dive_computer.c")
+  add_library(sbdivecomputer SHARED src/main/cpp/sb_dive_computer.c)
+  target_compile_options(sbdivecomputer PRIVATE -O2 -Wall)
+  target_link_libraries(sbdivecomputer divecomputer log)
+endif()
