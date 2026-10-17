@@ -7,9 +7,10 @@ The [ScubaBook](https://www.scubabook.app) app reads dive computers over Bluetoo
 ScubaBook uses the library **without modifications**, as a separate dynamic framework (iPhone) and shared
 library (Android). ScubaBook itself is not open source; its binary only calls the public `dc_*` API.
 
-The library ships as a **separate dynamic component** that the app loads at runtime, so it can be replaced by a
-modified, interface-compatible version (LGPL 2.1, section 6(b)); in addition, the written offer below applies
-(section 6(c)). This repository holds the exact source of the library as shipped, the scripts that build it, and the
+The library ships as a **separate dynamic component** that the app loads at runtime. ScubaBook provides the
+documentation and materials in this repository (and in the written offer below) intended to enable its replacement
+with a modified, interface-compatible version, subject to each platform's technical requirements; this is the
+compliance route intended under LGPL 2.1 section 6(b), and the written offer below applies in addition (section 6(c)). This repository holds the exact source of the library as shipped, the scripts that build it, and the
 instructions to rebuild it, replace it inside the app and sign the result yourself.
 
 ## What is here
@@ -36,7 +37,7 @@ Every ScubaBook build that ships the library gets a tag here pointing at the exa
 | Android versionCode 12 (1.0.0) | Android | `scubabook-android-12` | NDK 27.1.12297006 |
 | Android versionCode 13 (1.0.0) | Android | `scubabook-android-13` | NDK 27.1.12297006 |
 
-(Settings → About in the app shows the build number; on iPhone it is also in Settings → General → iPhone Storage.)
+(The app's Profile → Open-source licenses screen shows its version and build number and links to the matching tag.)
 
 ## Written offer (LGPL 2.1, section 6(c))
 
@@ -93,9 +94,10 @@ O app [ScubaBook](https://www.scubabook.app) lê computadores de mergulho por Bl
 ScubaBook usa a biblioteca **sem modificação**, como framework dinâmico (iPhone) e biblioteca compartilhada
 (Android), separados do app. O ScubaBook em si não é código aberto; o binário só chama a API pública `dc_*`.
 
-A biblioteca vai como **componente dinâmico separado**, carregado pelo app em tempo de execução, e por isso pode ser
-substituída por uma versão modificada e compatível (LGPL 2.1, § 6(b)); além disso, vale a oferta escrita abaixo
-(§ 6(c)). Este repositório guarda a fonte exata da biblioteca tal como embarcada, os scripts que a compilam e as
+A biblioteca vai como **componente dinâmico separado**, carregado pelo app em tempo de execução. O ScubaBook
+disponibiliza, neste repositório e na oferta escrita abaixo, documentação e materiais destinados a permitir sua
+substituição por uma versão modificada e compatível, observadas as exigências técnicas de cada plataforma; essa é a
+modalidade de conformidade pretendida pelo § 6(b) da LGPL 2.1, e, além dela, vale a oferta escrita abaixo (§ 6(c)). Este repositório guarda a fonte exata da biblioteca tal como embarcada, os scripts que a compilam e as
 instruções para recompilar, trocar dentro do app e assinar o resultado você mesmo.
 
 - `libdivecomputer/` — a fonte, sem modificação, da tag v0.9.0 (ver `ORIGEM.md`).
